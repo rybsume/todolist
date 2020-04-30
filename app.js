@@ -4,43 +4,31 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+let newItem = [];
+
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function (req, res) {
-  var today = new Date();
-  var currentDay = today.getDay();
-  var day = "";
-  switch (currentDay) {
-    case 1:
-      day = 'Monday';
-      break;
-    case 2:
-      day = 'Tuesday';
-      break;
-    case 3:
-      day = 'Wednesday';
-      break;
-    case 4:
-      day = 'Thursday';
-      break;
-    case 5:
-      day = 'Friday';
-      break;
-    case 6:
-      day = "Saturday";
-      break;
-    case 0:
-      day = "Sunday";
-      break;
-    default:
-      day = 'Oops! Looks like the Code is not working :(';
-      console.log("error: day is undefined");
-  }
-  res.render('list', {dayName: day});
-}
-);
+  let today = new Date();
+  let options = {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long'
+  };
+  let day = today.toLocaleDateString('pl-PL',options)
+  res.render('list', {
+    dayName: day,
+    newItem: newItem
+  });
+});
+
+app.post('/', (req, res) =>{
+  newItem.push(req.body.newItem);
+  res.redirect('/')
+})
 
 app.listen(3000, function () {
-  console.log("Server started on port 3000.");
+  console.log('Server started on port 3000.');
 });

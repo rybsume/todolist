@@ -4,15 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>To Do List</title>
 </head>
 
 <body>
-    <% if(dayName === "Saturday" || dayName === "Sunday"){%>
-    <h1 style="color: green;">It's <%= dayName %>.</h1>
-    <% }else{%>
-    <h1 style="color: blueviolet;">It's <%= dayName %>.</h1>
-   <%} %>
+    <h1>Welcome to ToDoList!</h1>
+
+    <h2>It's <%= dayName %>.</h2>
+
+    <ul>
+        <li>Buy Food</li>
+        <li>Prepare Food</li>
+        <li>Eat Food</li>
+
+        <% for ( var i=0; i<(newItem.length); i++){%>
+            <li><%= newItem[i] %> </li>
+
+        <%} %> 
+    </ul>
+
+    <form class="" action="/" method="post">
+        <input type="text" name="newItem" placeholder="What do you want to do?">
+        <button type="submit">Add to ToDoList!</button>
+    </form>
 </body>
 
 </html>
