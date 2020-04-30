@@ -4,30 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/78f946e37b.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>To Do List</title>
 </head>
 
 <body>
-    <h1>Welcome to ToDoList!</h1>
-
-    <h2>It's <%= dayName %>.</h2>
-
-    <ul>
-        <li>Buy Food</li>
-        <li>Prepare Food</li>
-        <li>Eat Food</li>
-
+    <div class="box" id="heading">
+        <h1>It's <%= dayName %>.</h1>
+    </div>
+    <div class="box">
         <% for ( var i=0; i<(newItem.length); i++){%>
-            <li><%= newItem[i] %> </li>
+        <div class="item">
 
-        <%} %> 
-    </ul>
+            <label class="container">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <p><%= newItem[i] %> </p>
 
-    <form class="" action="/" method="post">
-        <input type="text" name="newItem" placeholder="What do you want to do?">
-        <button type="submit">Add to ToDoList!</button>
-    </form>
+        </div>
+        <%} %>
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="What do you want to do?" autocomplete="off">
+            <button type="submit"><i class="fas fa-plus plus-sign"></i></button>
+        </form>
+    </div>
+
+    <footer>© rybsume 2020</footer>
 </body>
 
 </html>
